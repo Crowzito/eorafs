@@ -1,0 +1,34 @@
+.navbar {
+  background-color: #d472d4;
+  padding: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombras suaves */
+}
+
+.brand {
+  font-family: "Georgia", serif;
+  font-size: 1.8rem;
+  color: #731550;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.navLink {
+  font-family: "Arial", sans-serif;
+  font-size: 1.1rem;
+  color: #731550;
+  margin: 0 0.5rem;
+  transition: all 0.3s ease-in-out;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+}
+
+.navLink:hover {
+  background-color: #b05bb0;
+  color: #c7268c;
+  text-decoration: none;
+}
+
+.navLink:active {
+  background-color: #8f478f;
+}
+
