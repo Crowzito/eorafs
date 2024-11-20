@@ -21,7 +21,7 @@ export default function Pagina(props) {
             <Image src={logo} alt="Logo" height={80} />
           </NavbarBrand>
           <Nav className="me-start">
-          <NavLink className={styles.titleDom} href="/">
+            <NavLink className={styles.titleDom} href="/">
               VinhoDom
             </NavLink>
           </Nav>
@@ -29,17 +29,18 @@ export default function Pagina(props) {
             <NavLink className={styles.navLink} href="/vinhos">
               Vinhos
             </NavLink>
+            <NavLink className={styles.navLink} href="/frios">
+              Frios
+            </NavLink>
             <NavLink className={styles.navLink} href="/clientes">
               Clientes{" "}
             </NavLink>
             <NavLink className={styles.navLink} href="/fornecedores">
               Fornecedores{" "}
             </NavLink>
+
             <NavLink className={styles.navLink} href="/pedidos">
               Pedidos
-            </NavLink>
-            <NavLink className={styles.navLink} href="/frios">
-              Frios
             </NavLink>
           </Nav>
         </Container>

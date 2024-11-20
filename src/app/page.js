@@ -1,17 +1,9 @@
 "use client";
 
 import Pagina from "./components/Pagina";
-import {
-  Card,
-  Carousel,
-  Col,
-  Container,
-  Image,
-  Row,
-  Form,
-  Button,
-} from "react-bootstrap";
+import { Card, Carousel, Col, Container, Row, Button } from "react-bootstrap";
 import { useEffect, useState } from "react";
+import styles from "./page.module.css";
 
 const clientes = JSON.parse(localStorage.getItem("clientes")) || [];
 const fornecedores = JSON.parse(localStorage.getItem("fornecedores")) || [];
@@ -42,22 +34,21 @@ const objeto = [
   },
 ];
 
-export default function page() {
+export default function Page() {
   return (
     <Pagina>
-      <div className="full-width-carousel mb-4">
+      <div className={styles.fullWidthCarousel}>
         <Carousel indicators={false} controls={false}>
           <Carousel.Item>
             <img
-              className="d-block w-100"
-              style={{ height: "390px" }}
+              className={`d-block w-100 ${styles.carouselImg}`}
               src="https://images.tcdn.com.br/img/img_prod/1110779/1651526311_mosaico-vinho-promo.jpg"
               alt="Slide 2"
             />
           </Carousel.Item>
           <Carousel.Item>
             <img
-              className="d-block w-100 h-30"
+              className={`d-block w-100 ${styles.carouselImg}`}
               src="https://cdn.dooca.store/31192/files/banner-alta-vinho-branco.jpg?v=1646788890&webp=0https://tpc.googlesyndication.com/simgad/9741072406721062648?"
               alt="Slide 1"
             />
@@ -69,18 +60,20 @@ export default function page() {
         <Row md={3}>
           {objeto.map((item) => (
             <Col className="py-2" key={item.nome}>
-              <Card>
-                <Card.Img style={{ height: "230px" }} src={item.imagem} />
-                <Card.Body>
-                  <Card.Title className="text-center">
+              <Card className={styles.card}>
+                <Card.Img className={styles.cardImg} src={item.imagem} />
+                <Card.Body className={styles.cardBody}>
+                  <Card.Title className={`${styles.cardTitle} text-center`}>
                     <b>{item.nome}</b>
                   </Card.Title>
-                  <Card.Text className="text-center">
+                  <Card.Text className={`${styles.cardText} text-center`}>
                     Cadastrados: {item.quantidade}
                   </Card.Text>
                 </Card.Body>
-                <Card.Footer className="text-end">
-                  <Button href={item.caminho}>Ver Mais</Button>
+                <Card.Footer className={styles.cardFooter}>
+                  <Button className={styles.btn} href={item.caminho}>
+                    Ver Mais
+                  </Button>
                 </Card.Footer>
               </Card>
             </Col>

@@ -1,0 +1,62 @@
+.fullWidthCarousel {
+  width: 100%;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+}
+
+.carouselImg {
+  object-fit: cover;
+  border-radius: 8px;
+  height: 390px;
+}
+
+.card {
+  border: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+  border-radius: 8px;
+}
+
+.card:hover {
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.cardImg {
+  height: 230px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.cardBody {
+  background-color: #fff;
+  padding: 1rem;
+}
+
+.cardTitle {
+  font-family: "Georgia", serif;
+  color: #5c3b77;
+  font-size: 1.3rem;
+}
+
+.cardText {
+  color: #6c6c6c;
+  font-size: 1rem;
+}
+
+.cardFooter {
+  background-color: #f5f5f5;
+  border-top: 1px solid #ddd;
+  align-items: end;
+  text-align: end;
+}
+
+.btn {
+  background-color: #d472d4;
+  color: #5c3b77;
+  border-radius: 5px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.btn:hover {
+  background-color: #b05bb0;
+}
