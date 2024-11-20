@@ -10,59 +10,48 @@ import * as Yup from "yup";
 import InputMask from "react-input-mask";
 import Pagina from "@/app/components/Pagina";
 
-export default function VinhosFormPage(props) {
+export default function FriosFormPage(props) {
   const [fornecedorFiltrado, setFornecedorFiltrado] = useState([]);
 
   const router = useRouter();
-  const [novoTipo, setNovoTipo] = useState("");
 
   const fornecedores = JSON.parse(localStorage.getItem("fornecedores")) || [];
-  const vinhos = JSON.parse(localStorage.getItem("vinhos")) || [];
+  const frios = JSON.parse(localStorage.getItem("frios")) || [];
   const id = props.searchParams.id;
-  const vinhoEditado = vinhos.find((item) => item.id == id);
+  const frioEditado = frios.find((item) => item.id == id);
 
   function salvar(dados) {
-    if (vinhoEditado) {
-      Object.assign(vinhoEditado, dados);
-      localStorage.setItem("vinhos", JSON.stringify(vinhos));
+    if (frioEditado) {
+      Object.assign(frioEditado, dados);
+      localStorage.setItem("frios", JSON.stringify(frios));
     } else {
       dados.id = v4();
-      vinhos.push(dados);
-      localStorage.setItem("vinhos", JSON.stringify(vinhos));
+      frios.push(dados);
+      localStorage.setItem("frios", JSON.stringify(frios));
     }
-    alert("Vinho adicionado com sucesso!");
-    router.push("/vinhos");
+    alert("Tábua de Frios cadastrada com sucesso!");
+    router.push("/frios");
   }
 
   const initialValues = {
-    vinho: "",
+    frio: "",
     tipo: "",
     precoUnico: "",
-    safra: "",
-    teorAlco: "",
+    peso: "",
     estoque: "",
     fornecedor: "",
     dataInclusao: "",
   };
 
   const validationSchema = Yup.object().shape({
-    vinho: Yup.string().required("Campo obrigatório"),
+    frio: Yup.string().required("Campo obrigatório"),
     tipo: Yup.string().required("Campo Obrigatório"),
     precoUnico: Yup.string().required("Campo Obrigatório"),
-    safra: Yup.string().required("Campo Obrigatório"),
-    teorAlco: Yup.string().required("Campo Obrigatório"),
+    peso: Yup.string().required("Campo Obrigatório"),
     estoque: Yup.number().required("Campo Obrigatório"),
     fornecedor: Yup.string().required("Campo obrigatório"),
     dataInclusao: Yup.date().required("Campo obrigatório"),
   });
-
-  const handleAddTipo = (e, setFieldValue, values) => {
-    e.preventDefault();
-    if (novoTipo.trim()) {
-      setFieldValue("tipo", [...values.tipo, novoTipo]);
-      setNovoTipo("");
-    }
-  };
 
   useEffect(() => {
     if (fornecedores.length > 0) setFornecedorFiltrado(fornecedores);
@@ -71,7 +60,7 @@ export default function VinhosFormPage(props) {
   return (
     <Pagina>
       <Formik
-        initialValues={vinhoEditado || initialValues}
+        initialValues={frioEditado || initialValues}
         validationSchema={validationSchema}
         onSubmit={salvar}
       >
@@ -82,25 +71,24 @@ export default function VinhosFormPage(props) {
           handleChange,
           handleBlur,
           handleSubmit,
-          setFieldValue,
         }) => {
           console.log(errors);
           return (
             <Form onSubmit={handleSubmit}>
               <Row className="my-2">
                 <Form.Group as={Col}>
-                  <Form.Label>Vinho:</Form.Label>
+                  <Form.Label>Frio:</Form.Label>
                   <Form.Control
-                    name="vinho"
+                    name="frio"
                     type="text"
-                    value={values.vinho}
+                    value={values.frio}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    isValid={touched.vinho && !errors.vinho}
-                    isInvalid={touched.vinho && errors.vinho}
+                    isValid={touched.frio && !errors.frio}
+                    isInvalid={touched.frio && errors.frio}
                   />
                   <Form.Control.Feedback type="invalid">
-                    {errors.vinho}
+                    {errors.frio}
                   </Form.Control.Feedback>
                 </Form.Group>
               </Row>
@@ -117,12 +105,12 @@ export default function VinhosFormPage(props) {
                     isInvalid={touched.tipo && errors.tipo}
                   >
                     <option value="">Selecione:</option>
-                    <option value="Tinto">Tinto</option>
-                    <option value="Branco">Branco</option>
-                    <option value="Rosé">Rosé</option>
-                    <option value="Espumante">Espumante</option>
-                    <option value="Sobremesa">Sobremesa</option>
-                    <option value="Verde">Verde</option>
+                    <option value="Tradicional">Tradicional</option>
+                    <option value="Gourmet">Gourmet</option>
+                    <option value="Rústica">Rústica</option>
+                    <option value="Vegana">Vegana</option>
+                    <option value="Infantil">Infantil</option>
+                    <option value="Queijos">Queijos</option>
                   </Form.Select>
                   <Form.Control.Feedback type="invalid">
                     {errors.tipo}
@@ -132,46 +120,27 @@ export default function VinhosFormPage(props) {
 
               <Row className="mb-2">
                 <Form.Group as={Col}>
-                  <Form.Label>Safra:</Form.Label>
-                  <Form.Control
-                    name="safra"
-                    type="number"
-                    placeholder="Ano: aaaa"
-                    value={values.safra}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    isValid={touched.safra && !errors.safra}
-                    isInvalid={touched.safra && errors.safra}
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    {errors.safra}
-                  </Form.Control.Feedback>
-                </Form.Group>
-
-                <Form.Group as={Col}>
-                  <Form.Label>Teor Alcoólico:</Form.Label>
+                  <Form.Label>Peso:</Form.Label>
                   <InputMask
-                    mask="99%"
-                    value={values.teorAlco}
+                    mask="999g"
+                    value={values.peso}
                     onChange={handleChange}
                     onBlur={handleBlur}
                   >
                     {(inputProps) => (
                       <Form.Control
                         {...inputProps}
-                        name="teorAlco"
-                        isValid={touched.teorAlco && !errors.teorAlco}
-                        isInvalid={touched.teorAlco && errors.teorAlco}
+                        name="peso"
+                        isValid={touched.peso && !errors.peso}
+                        isInvalid={touched.peso && errors.peso}
                       />
                     )}
                   </InputMask>
                   <Form.Control.Feedback type="invalid">
-                    {errors.teorAlco}
+                    {errors.peso}
                   </Form.Control.Feedback>
                 </Form.Group>
-              </Row>
 
-              <Row className="mb-2">
                 <Form.Group as={Col}>
                   <Form.Label>Preço Unitário:</Form.Label>
                   <InputMask
@@ -252,10 +221,7 @@ export default function VinhosFormPage(props) {
               </Row>
 
               <div className="d-flex justify-content-between mt-4">
-                <Button
-                  variant="primary"
-                  onClick={() => router.push("/vinhos")}
-                >
+                <Button variant="primary" onClick={() => router.push("/frios")}>
                   <FaArrowLeft /> Voltar
                 </Button>
                 <Button type="submit" variant="success">

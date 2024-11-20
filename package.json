@@ -1,5 +1,5 @@
 {
-  "name": "adega-nobre",
+  "name": "vinho-dom",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,19 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "boostrap": "^2.0.0",
+    "axios": "^1.7.7",
     "bootstrap": "^5.3.3",
-    "chart.js": "^4.4.6",
-    "emailjs-com": "^3.2.0",
     "formik": "^2.4.6",
-    "next": "^15.0.3",
-    "react": "^18.3.1",
+    "next": "14.2.7",
+    "react": "^18",
     "react-bootstrap": "^2.10.5",
-    "react-chartjs-2": "^5.2.0",
-    "react-dom": "^18.3.1",
+    "react-dom": "^18",
     "react-icons": "^5.3.0",
-    "remask": "^1.2.2",
-    "uuid": "^11.0.2",
+    "react-input-mask": "^2.0.4",
+    "uuid": "^10.0.0",
     "yup": "^1.4.0"
   }
 }

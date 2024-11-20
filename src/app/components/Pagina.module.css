@@ -27,6 +27,20 @@
   color: #c7268c;
   text-decoration: none;
 }
+.titleDom {
+  font-family: "Lobster", sans-serif;
+  font-size: 2.8rem;
+  color: #5c1140;
+  margin: 0 0.5rem;
+  transition: all 0.3s ease-in-out;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+}
+
+.titleDom:hover {
+  color: #e6c71ad3;
+  text-decoration: none;
+}
 
 .navLink:active {
   background-color: #8f478f;
