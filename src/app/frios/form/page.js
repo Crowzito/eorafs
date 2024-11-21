@@ -9,6 +9,7 @@ import { v4 } from "uuid";
 import * as Yup from "yup";
 import InputMask from "react-input-mask";
 import Pagina from "@/app/components/Pagina";
+import styles from "@/app/Form.module.css";
 
 export default function FriosFormPage(props) {
   const [fornecedorFiltrado, setFornecedorFiltrado] = useState([]);
@@ -59,179 +60,205 @@ export default function FriosFormPage(props) {
 
   return (
     <Pagina>
-      <Formik
-        initialValues={frioEditado || initialValues}
-        validationSchema={validationSchema}
-        onSubmit={salvar}
-      >
-        {({
-          values,
-          errors,
-          touched,
-          handleChange,
-          handleBlur,
-          handleSubmit,
-        }) => {
-          console.log(errors);
-          return (
-            <Form onSubmit={handleSubmit}>
-              <Row className="my-2">
-                <Form.Group as={Col}>
-                  <Form.Label>Frio:</Form.Label>
-                  <Form.Control
-                    name="frio"
-                    type="text"
-                    value={values.frio}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    isValid={touched.frio && !errors.frio}
-                    isInvalid={touched.frio && errors.frio}
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    {errors.frio}
-                  </Form.Control.Feedback>
-                </Form.Group>
-              </Row>
+      <div className={styles["form-container"]}>
+        <Formik
+          initialValues={frioEditado || initialValues}
+          validationSchema={validationSchema}
+          onSubmit={salvar}
+        >
+          {({
+            values,
+            errors,
+            touched,
+            handleChange,
+            handleBlur,
+            handleSubmit,
+          }) => {
+            console.log(errors);
+            return (
+              <Form onSubmit={handleSubmit}>
+                <Row className="my-2">
+                  <Form.Group as={Col}>
+                    <Form.Label className={styles["form-label"]}>
+                      Frio:
+                    </Form.Label>
+                    <Form.Control
+                      className={styles["form-input"]}
+                      name="frio"
+                      type="text"
+                      value={values.frio}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      isValid={touched.frio && !errors.frio}
+                      isInvalid={touched.frio && errors.frio}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      {errors.frio}
+                    </Form.Control.Feedback>
+                  </Form.Group>
+                </Row>
 
-              <Row className="mb-2">
-                <Form.Group as={Col}>
-                  <Form.Label>Tipo:</Form.Label>
-                  <Form.Select
-                    name="tipo"
-                    value={values.tipo}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    isValid={touched.tipo && !errors.tipo}
-                    isInvalid={touched.tipo && errors.tipo}
+                <Row className="mb-2">
+                  <Form.Group as={Col}>
+                    <Form.Label className={styles["form-label"]}>
+                      Tipo:
+                    </Form.Label>
+                    <Form.Select
+                      className={styles["form-input"]}
+                      name="tipo"
+                      value={values.tipo}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      isValid={touched.tipo && !errors.tipo}
+                      isInvalid={touched.tipo && errors.tipo}
+                    >
+                      <option value="">Selecione:</option>
+                      <option value="Tradicional">Tradicional</option>
+                      <option value="Gourmet">Gourmet</option>
+                      <option value="Rústica">Rústica</option>
+                      <option value="Vegana">Vegana</option>
+                      <option value="Infantil">Infantil</option>
+                      <option value="Queijos">Queijos</option>
+                    </Form.Select>
+                    <Form.Control.Feedback type="invalid">
+                      {errors.tipo}
+                    </Form.Control.Feedback>
+                  </Form.Group>
+                </Row>
+
+                <Row className="mb-2">
+                  <Form.Group as={Col}>
+                    <Form.Label className={styles["form-label"]}>
+                      Peso:
+                    </Form.Label>
+                    <InputMask
+                      mask="999g"
+                      value={values.peso}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                    >
+                      {(inputProps) => (
+                        <Form.Control
+                          {...inputProps}
+                          className={styles["form-input"]}
+                          name="peso"
+                          isValid={touched.peso && !errors.peso}
+                          isInvalid={touched.peso && errors.peso}
+                        />
+                      )}
+                    </InputMask>
+                    <Form.Control.Feedback type="invalid">
+                      {errors.peso}
+                    </Form.Control.Feedback>
+                  </Form.Group>
+
+                  <Form.Group as={Col}>
+                    <Form.Label className={styles["form-label"]}>
+                      Preço Unitário:
+                    </Form.Label>
+                    <InputMask
+                      mask="R$ 999,99"
+                      value={values.precoUnico}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                    >
+                      {(inputProps) => (
+                        <Form.Control
+                          {...inputProps}
+                          className={styles["form-input"]}
+                          name="precoUnico"
+                          isValid={touched.precoUnico && !errors.precoUnico}
+                          isInvalid={touched.precoUnico && errors.precoUnico}
+                        />
+                      )}
+                    </InputMask>
+                    <Form.Control.Feedback type="invalid">
+                      {errors.precoUnico}
+                    </Form.Control.Feedback>
+                  </Form.Group>
+
+                  <Form.Group as={Col}>
+                    <Form.Label className={styles["form-label"]}>
+                      Estoque
+                    </Form.Label>
+                    <Form.Control
+                      className={styles["form-input"]}
+                      name="estoque"
+                      type="number"
+                      value={values.estoque}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      isValid={touched.estoque && !errors.estoque}
+                      isInvalid={touched.estoque && errors.estoque}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      {errors.estoque}
+                    </Form.Control.Feedback>
+                  </Form.Group>
+                </Row>
+
+                <Row className="mb-2">
+                  <Form.Group as={Col}>
+                    <Form.Label className={styles["form-label"]}>
+                      Fornecedor:
+                    </Form.Label>
+                    <Form.Select
+                      className={styles["form-input"]}
+                      name="fornecedor"
+                      value={values.fornecedor}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      isValid={touched.fornecedor && !errors.fornecedor}
+                      isInvalid={touched.fornecedor && errors.fornecedor}
+                    >
+                      <option value="">Selecione</option>
+                      {fornecedorFiltrado.map((fornecedor) => (
+                        <option key={fornecedor.nome} value={fornecedor.nome}>
+                          {fornecedor.nome}
+                        </option>
+                      ))}
+                    </Form.Select>
+                    <Form.Control.Feedback type="invalid">
+                      {errors.fornecedor}
+                    </Form.Control.Feedback>
+                  </Form.Group>
+
+                  <Form.Group as={Col}>
+                    <Form.Label className={styles["form-label"]}>
+                      Data de Inclusão:
+                    </Form.Label>
+                    <Form.Control
+                      className={styles["form-input"]}
+                      type="date"
+                      name="dataInclusao"
+                      value={values.dataInclusao}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      isValid={touched.dataInclusao && !errors.dataInclusao}
+                      isInvalid={touched.dataInclusao && errors.dataInclusao}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      {errors.dataInclusao}
+                    </Form.Control.Feedback>
+                  </Form.Group>
+                </Row>
+
+                <div className="d-flex justify-content-between mt-4">
+                  <Button
+                    variant="primary"
+                    onClick={() => router.push("/frios")}
                   >
-                    <option value="">Selecione:</option>
-                    <option value="Tradicional">Tradicional</option>
-                    <option value="Gourmet">Gourmet</option>
-                    <option value="Rústica">Rústica</option>
-                    <option value="Vegana">Vegana</option>
-                    <option value="Infantil">Infantil</option>
-                    <option value="Queijos">Queijos</option>
-                  </Form.Select>
-                  <Form.Control.Feedback type="invalid">
-                    {errors.tipo}
-                  </Form.Control.Feedback>
-                </Form.Group>
-              </Row>
-
-              <Row className="mb-2">
-                <Form.Group as={Col}>
-                  <Form.Label>Peso:</Form.Label>
-                  <InputMask
-                    mask="999g"
-                    value={values.peso}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                  >
-                    {(inputProps) => (
-                      <Form.Control
-                        {...inputProps}
-                        name="peso"
-                        isValid={touched.peso && !errors.peso}
-                        isInvalid={touched.peso && errors.peso}
-                      />
-                    )}
-                  </InputMask>
-                  <Form.Control.Feedback type="invalid">
-                    {errors.peso}
-                  </Form.Control.Feedback>
-                </Form.Group>
-
-                <Form.Group as={Col}>
-                  <Form.Label>Preço Unitário:</Form.Label>
-                  <InputMask
-                    mask="R$ 999,99"
-                    value={values.precoUnico}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                  >
-                    {(inputProps) => (
-                      <Form.Control
-                        {...inputProps}
-                        name="precoUnico"
-                        isValid={touched.precoUnico && !errors.precoUnico}
-                        isInvalid={touched.precoUnico && errors.precoUnico}
-                      />
-                    )}
-                  </InputMask>
-                  <Form.Control.Feedback type="invalid">
-                    {errors.precoUnico}
-                  </Form.Control.Feedback>
-                </Form.Group>
-
-                <Form.Group as={Col}>
-                  <Form.Label>Estoque</Form.Label>
-                  <Form.Control
-                    name="estoque"
-                    type="number"
-                    value={values.estoque}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    isValid={touched.estoque && !errors.estoque}
-                    isInvalid={touched.estoque && errors.estoque}
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    {errors.estoque}
-                  </Form.Control.Feedback>
-                </Form.Group>
-              </Row>
-
-              <Row className="mb-2">
-                <Form.Group as={Col}>
-                  <Form.Label>Fornecedor:</Form.Label>
-                  <Form.Select
-                    name="fornecedor"
-                    value={values.fornecedor}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    isValid={touched.fornecedor && !errors.fornecedor}
-                    isInvalid={touched.fornecedor && errors.fornecedor}
-                  >
-                    <option value="">Selecione</option>
-                    {fornecedorFiltrado.map((fornecedor) => (
-                      <option key={fornecedor.nome} value={fornecedor.nome}>
-                        {fornecedor.nome}
-                      </option>
-                    ))}
-                  </Form.Select>
-                  <Form.Control.Feedback type="invalid">
-                    {errors.fornecedor}
-                  </Form.Control.Feedback>
-                </Form.Group>
-
-                <Form.Group as={Col}>
-                  <Form.Label>Data de Inclusão:</Form.Label>
-                  <Form.Control
-                    type="date"
-                    name="dataInclusao"
-                    value={values.dataInclusao}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    isValid={touched.dataInclusao && !errors.dataInclusao}
-                    isInvalid={touched.dataInclusao && errors.dataInclusao}
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    {errors.dataInclusao}
-                  </Form.Control.Feedback>
-                </Form.Group>
-              </Row>
-
-              <div className="d-flex justify-content-between mt-4">
-                <Button variant="primary" onClick={() => router.push("/frios")}>
-                  <FaArrowLeft /> Voltar
-                </Button>
-                <Button type="submit" variant="success">
-                  <FaCheck /> Enviar
-                </Button>
-              </div>
-            </Form>
-          );
-        }}
-      </Formik>
+                    <FaArrowLeft /> Voltar
+                  </Button>
+                  <Button type="submit" variant="success">
+                    <FaCheck /> Enviar
+                  </Button>
+                </div>
+              </Form>
+            );
+          }}
+        </Formik>
+      </div>
     </Pagina>
   );
 }

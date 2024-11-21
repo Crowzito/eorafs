@@ -1,0 +1,46 @@
+.form-container {
+  background-color: #f0f0cc;
+  border-radius: 8px;
+  margin-top: 2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra dupla */
+  padding: 2rem;
+}
+
+.form-label {
+  font-family: Georgia, serif;
+  color: #333;
+}
+
+.form-input {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 0.5rem;
+  font-size: 1rem;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.form-input:focus {
+  border-color: #a29bfe;
+  box-shadow: 0 0 5px rgba(162, 155, 254, 0.5);
+  outline: none;
+}
+
+.textarea {
+  resize: none;
+}
+
+.form-button {
+  background-color: #6c5ce7;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-button:hover {
+  background-color: #4e3de8;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}

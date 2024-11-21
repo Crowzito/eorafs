@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { Button, Table } from "react-bootstrap";
 import { FaEdit, FaPlusSquare, FaTrashAlt } from "react-icons/fa";
 import Pagina from "../components/Pagina";
+import styles from "../Inicial.module.css";
 
 export default function PedidosInicialPage() {
   const [pedidos, setPedidos] = useState([]);
@@ -28,45 +29,51 @@ export default function PedidosInicialPage() {
   return (
     <Pagina>
       <div className="text-end my-2">
-        <Button href="/pedidos/form">
+        <Button className={styles.buttonX} href="/pedidos/form">
           <FaPlusSquare /> Novo
         </Button>
       </div>
 
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th>Cliente:</th>
-            <th>Quantidade:</th>
-            <th>Data:</th>
-            <th>Status:</th>
-            <th>Ações</th>
-          </tr>
-        </thead>
-        <tbody>
-          {pedidos.map((pedido) => {
-            return (
-              <tr key={pedido.id} className="text-center">
-                <td>{pedido.cliente}</td>
-                <td>{pedido.quantidade}</td>
-                <td>{pedido.data}</td>
-                <td>{pedido.status}</td>
-                <td className="text-center">
-                  <Button
-                    className="me-2"
-                    href={`/pedidos/form?id=${pedido.id}`}
-                  >
-                    <FaEdit />
-                  </Button>
-                  <Button variant="danger" onClick={() => apagar(pedido)}>
-                    <FaTrashAlt />
-                  </Button>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </Table>
+      <div className={styles.tableWrapper}>
+        <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th className={styles.theadX}>Cliente:</th>
+              <th className={styles.theadX}>Quantidade:</th>
+              <th className={styles.theadX}>Data:</th>
+              <th className={styles.theadX}>Status:</th>
+              <th className={styles.theadX}>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            {pedidos.map((pedido) => {
+              return (
+                <tr key={pedido.id} className="text-center">
+                  <td>{pedido.cliente}</td>
+                  <td>{pedido.quantidade}</td>
+                  <td>{pedido.data}</td>
+                  <td>{pedido.status}</td>
+                  <td className="text-center">
+                    <Button
+                      className={styles.buttonXY}
+                      href={`/pedidos/form?id=${pedido.id}`}
+                    >
+                      <FaEdit />
+                    </Button>
+                    <Button
+                      className={styles.buttonXY}
+                      variant="danger"
+                      onClick={() => apagar(pedido)}
+                    >
+                      <FaTrashAlt />
+                    </Button>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </Table>
+      </div>
     </Pagina>
   );
 }

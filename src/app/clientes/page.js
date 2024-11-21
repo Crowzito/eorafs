@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Table } from "react-bootstrap";
 import { FaEdit, FaPlusSquare, FaTrashAlt } from "react-icons/fa";
 import Pagina from "../components/Pagina";
+import styles from "../Inicial.module.css";
 
 export default function ClientesInicialPage() {
   const [clientes, setClientes] = useState([]);
@@ -26,23 +27,23 @@ export default function ClientesInicialPage() {
   return (
     <Pagina>
       <div className="text-end my-3">
-        <Button href="/clientes/form">
+        <Button className={styles.buttonX} href="/clientes/form">
           <FaPlusSquare /> Novo
         </Button>
       </div>
 
-      <div>
+      <div className={styles.tableWrapper}>
         <Table striped bordered hover>
           <thead>
             <tr>
-              <th>Nome:</th>
-              <th>E-mail:</th>
-              <th>Telefone:</th>
-              <th>CPF:</th>
-              <th>País:</th>
-              <th>Estado:</th>
-              <th>Data de Nascimento:</th>
-              <th>Ações:</th>
+              <th className={styles.theadX}>Nome:</th>
+              <th className={styles.theadX}>E-mail:</th>
+              <th className={styles.theadX}>Telefone:</th>
+              <th className={styles.theadX}>CPF:</th>
+              <th className={styles.theadX}>País:</th>
+              <th className={styles.theadX}>Estado:</th>
+              <th className={styles.theadX}>Data de Nascimento:</th>
+              <th className={styles.theadX}>Ações:</th>
             </tr>
           </thead>
           <tbody>
@@ -58,12 +59,16 @@ export default function ClientesInicialPage() {
                   <td>{doador.dataNascimento}</td>
                   <td>
                     <Button
-                      className="me-2"
+                      className={styles.buttonXY}
                       href={`/clientes/form?id=${doador.id}`}
                     >
                       <FaEdit />
                     </Button>
-                    <Button variant="danger" onClick={() => apagar(doador)}>
+                    <Button
+                      className={styles.buttonXY}
+                      variant="danger"
+                      onClick={() => apagar(doador)}
+                    >
                       <FaTrashAlt />
                     </Button>
                   </td>

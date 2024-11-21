@@ -11,6 +11,7 @@ import { FaArrowLeft, FaCheck } from "react-icons/fa";
 import { v4 } from "uuid";
 import * as Yup from "yup";
 import InputMask from "react-input-mask";
+import styles from "@/app/Form.module.css";
 
 export default function ClienteFormPage(props) {
   const router = useRouter();
@@ -73,178 +74,204 @@ export default function ClienteFormPage(props) {
 
   return (
     <Pagina>
-      <Formik
-        initialValues={clienteEditado || initialValues}
-        validationSchema={validationSchema}
-        onSubmit={salvar}
-      >
-        {({
-          values,
-          errors,
-          touched,
-          handleChange,
-          handleBlur,
-          handleSubmit,
-        }) => {
-          return (
-            <Form onSubmit={handleSubmit}>
-              {/* Campos do form */}
-              <Row className="mb-2">
-                <Form.Group as={Col}>
-                  <Form.Label>Nome:</Form.Label>
-                  <Form.Control
-                    name="nome"
-                    type="text"
-                    value={values.nome}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    isValid={touched.nome && !errors.nome}
-                    isInvalid={touched.nome && errors.nome}
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    {errors.nome}
-                  </Form.Control.Feedback>
-                </Form.Group>
-              </Row>
+      <div className={styles["form-container"]}>
+        <Formik
+          initialValues={clienteEditado || initialValues}
+          validationSchema={validationSchema}
+          onSubmit={salvar}
+        >
+          {({
+            values,
+            errors,
+            touched,
+            handleChange,
+            handleBlur,
+            handleSubmit,
+          }) => {
+            return (
+              <Form onSubmit={handleSubmit}>
+                {/* Campos do form */}
+                <Row className="mb-2">
+                  <Form.Group as={Col}>
+                    <Form.Label className={styles["form-label"]}>
+                      Nome:
+                    </Form.Label>
+                    <Form.Control
+                      className={styles["form-input"]}
+                      name="nome"
+                      type="text"
+                      value={values.nome}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      isValid={touched.nome && !errors.nome}
+                      isInvalid={touched.nome && errors.nome}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      {errors.nome}
+                    </Form.Control.Feedback>
+                  </Form.Group>
+                </Row>
 
-              <Row className="mb-2">
-                <Form.Group as={Col}>
-                  <Form.Label>E-mail:</Form.Label>
-                  <Form.Control
-                    name="email"
-                    type="email"
-                    placeholder="exemplo@email.com"
-                    value={values.email}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    isValid={touched.email && !errors.email}
-                    isInvalid={touched.email && errors.email}
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    {errors.email}
-                  </Form.Control.Feedback>
-                </Form.Group>
-              </Row>
+                <Row className="mb-2">
+                  <Form.Group as={Col}>
+                    <Form.Label className={styles["form-label"]}>
+                      E-mail:
+                    </Form.Label>
+                    <Form.Control
+                      className={styles["form-input"]}
+                      name="email"
+                      type="email"
+                      placeholder="exemplo@email.com"
+                      value={values.email}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      isValid={touched.email && !errors.email}
+                      isInvalid={touched.email && errors.email}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      {errors.email}
+                    </Form.Control.Feedback>
+                  </Form.Group>
+                </Row>
 
-              <Row className="mb-2">
-                <Form.Group as={Col}>
-                  <Form.Label>Telefone:</Form.Label>
-                  <InputMask
-                    mask="(99) 99999-9999"
-                    maskPlaceholder={null}
-                    value={values.telefone}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                  >
-                    {(inputProps) => (
-                      <Form.Control
-                        {...inputProps}
-                        name="telefone"
-                        isValid={touched.telefone && !errors.telefone}
-                        isInvalid={touched.telefone && errors.telefone}
-                      />
-                    )}
-                  </InputMask>
-                  <Form.Control.Feedback type="invalid">
-                    {errors.telefone}
-                  </Form.Control.Feedback>
-                </Form.Group>
-                <Form.Group as={Col}>
-                  <Form.Label>CPF:</Form.Label>
-                  <InputMask
-                    mask="999.999.999-99"
-                    maskPlaceholder={null}
-                    value={values.cpf}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                  >
-                    {(inputProps) => (
-                      <Form.Control
-                        {...inputProps}
-                        name="cpf"
-                        isValid={touched.cpf && !errors.cpf}
-                        isInvalid={touched.cpf && errors.cpf}
-                      />
-                    )}
-                  </InputMask>
-                  <Form.Control.Feedback type="invalid">
-                    {errors.cpf}
-                  </Form.Control.Feedback>
-                </Form.Group>
-              </Row>
+                <Row className="mb-2">
+                  <Form.Group as={Col}>
+                    <Form.Label className={styles["form-label"]}>
+                      Telefone:
+                    </Form.Label>
+                    <InputMask
+                      mask="(99) 99999-9999"
+                      maskPlaceholder={null}
+                      value={values.telefone}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                    >
+                      {(inputProps) => (
+                        <Form.Control
+                          {...inputProps}
+                          className={styles["form-input"]}
+                          name="telefone"
+                          isValid={touched.telefone && !errors.telefone}
+                          isInvalid={touched.telefone && errors.telefone}
+                        />
+                      )}
+                    </InputMask>
+                    <Form.Control.Feedback type="invalid">
+                      {errors.telefone}
+                    </Form.Control.Feedback>
+                  </Form.Group>
 
-              <Row className="mb-2">
-                <Form.Group as={Col}>
-                  <Form.Label>País:</Form.Label>
-                  <Form.Select
-                    name="pais"
-                    value={values.pais}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    isValid={touched.pais && !errors.pais}
-                    isInvalid={touched.pais && errors.pais}
-                  >
-                    <option value="">Selecione</option>
-                    {paises.map((pais) => (
-                      <option value={pais.nome}>{pais.nome}</option>
-                    ))}
-                  </Form.Select>
-                  <Form.Control.Feedback type="invalid">
-                    {errors.pais}
-                  </Form.Control.Feedback>
-                </Form.Group>
+                  <Form.Group as={Col}>
+                    <Form.Label className={styles["form-label"]}>
+                      CPF:
+                    </Form.Label>
+                    <InputMask
+                      mask="999.999.999-99"
+                      maskPlaceholder={null}
+                      value={values.cpf}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                    >
+                      {(inputProps) => (
+                        <Form.Control
+                          {...inputProps}
+                          className={styles["form-input"]}
+                          name="cpf"
+                          isValid={touched.cpf && !errors.cpf}
+                          isInvalid={touched.cpf && errors.cpf}
+                        />
+                      )}
+                    </InputMask>
+                    <Form.Control.Feedback type="invalid">
+                      {errors.cpf}
+                    </Form.Control.Feedback>
+                  </Form.Group>
+                </Row>
 
-                <Form.Group as={Col}>
-                  <Form.Label>Estado:</Form.Label>
-                  <Form.Select
-                    name="estado"
-                    value={values.estado}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    disabled={values.pais !== "Brasil"}
-                    isValid={touched.estado && !errors.estado}
-                    isInvalid={touched.estado && errors.estado}
-                  >
-                    <option value="">Selecione</option>
-                    {estados.map((estado) => (
-                      <option value={estado.sigla}>{estado.sigla}</option>
-                    ))}
-                  </Form.Select>
-                  <Form.Control.Feedback type="invalid">
-                    {errors.estado}
-                  </Form.Control.Feedback>
-                </Form.Group>
+                <Row className="mb-2">
+                  <Form.Group as={Col}>
+                    <Form.Label className={styles["form-label"]}>
+                      País:
+                    </Form.Label>
+                    <Form.Select
+                      name="pais"
+                      className={styles["form-input"]}
+                      value={values.pais}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      isValid={touched.pais && !errors.pais}
+                      isInvalid={touched.pais && errors.pais}
+                    >
+                      <option value="">Selecione</option>
+                      {paises.map((pais) => (
+                        <option value={pais.nome}>{pais.nome}</option>
+                      ))}
+                    </Form.Select>
+                    <Form.Control.Feedback type="invalid">
+                      {errors.pais}
+                    </Form.Control.Feedback>
+                  </Form.Group>
 
-                <Form.Group as={Col}>
-                  <Form.Label>Data de Nascimento:</Form.Label>
-                  <Form.Control
-                    name="dataNascimento"
-                    type="date"
-                    value={values.dataNascimento}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    isValid={touched.dataNascimento && !errors.dataNascimento}
-                    isInvalid={touched.dataNascimento && errors.dataNascimento}
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    {errors.dataNascimento}
-                  </Form.Control.Feedback>
-                </Form.Group>
-              </Row>
+                  <Form.Group as={Col}>
+                    <Form.Label className={styles["form-label"]}>
+                      Estado:
+                    </Form.Label>
+                    <Form.Select
+                      name="estado"
+                      className={styles["form-input"]}
+                      value={values.estado}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      disabled={values.pais !== "Brasil"}
+                      isValid={touched.estado && !errors.estado}
+                      isInvalid={touched.estado && errors.estado}
+                    >
+                      <option value="">Selecione</option>
+                      {estados.map((estado) => (
+                        <option value={estado.sigla}>{estado.sigla}</option>
+                      ))}
+                    </Form.Select>
+                    <Form.Control.Feedback type="invalid">
+                      {errors.estado}
+                    </Form.Control.Feedback>
+                  </Form.Group>
 
-              {/* botões */}
-              <Form.Group className="d-flex justify-content-between">
-                <Button className="me-2" href="/doadores">
-                  <FaArrowLeft /> Voltar
-                </Button>
-                <Button type="submit" variant="success">
-                  <FaCheck /> Enviar
-                </Button>
-              </Form.Group>
-            </Form>
-          );
-        }}
-      </Formik>
+                  <Form.Group as={Col}>
+                    <Form.Label className={styles["form-label"]}>
+                      Data de Nascimento:
+                    </Form.Label>
+                    <Form.Control
+                      className={styles["form-input"]}
+                      name="dataNascimento"
+                      type="date"
+                      value={values.dataNascimento}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      isValid={touched.dataNascimento && !errors.dataNascimento}
+                      isInvalid={
+                        touched.dataNascimento && errors.dataNascimento
+                      }
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      {errors.dataNascimento}
+                    </Form.Control.Feedback>
+                  </Form.Group>
+                </Row>
+
+                {/* botões */}
+                <Form.Group className="d-flex justify-content-between">
+                  <Button className="me-2" href="/doadores">
+                    <FaArrowLeft /> Voltar
+                  </Button>
+                  <Button type="submit" variant="success">
+                    <FaCheck /> Enviar
+                  </Button>
+                </Form.Group>
+              </Form>
+            );
+          }}
+        </Formik>
+      </div>
     </Pagina>
   );
 }
